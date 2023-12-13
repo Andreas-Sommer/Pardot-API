@@ -2,6 +2,8 @@
 
 namespace CyberDuck\PardotApi\Query;
 
+use stdClass;
+
 /**Prospects object representation
  *
  * @category   PardotApi
@@ -22,17 +24,17 @@ class ProspectsQuery extends Query
 	 */
 	protected $object = 'prospect';
 
-	/**
-	 * Sends the request to retrieve the user object by email and returns it from the API
-	 *
-	 * /api/user/version/{version}/do/read/email/<email>?...
-	 *
-	 * required: user_key, api_key, email
-	 *
-	 * @param int $id
-	 * @return stdClass|null
-	 */
-	public function readByEmail(string $email):? \stdClass
+    /**
+     * Sends the request to retrieve the user object by email and returns it from the API
+     *
+     * /api/user/version/{version}/do/read/email/<email>?...
+     *
+     * required: user_key, api_key, email
+     *
+     * @param string $email
+     * @return stdClass|null
+     */
+	public function readByEmail(string $email):? stdClass
 	{
 		return $this->setOperator(sprintf('read/email/%s', $email))->request($this->object);
 	}
