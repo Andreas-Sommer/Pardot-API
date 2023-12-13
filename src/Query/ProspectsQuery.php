@@ -17,12 +17,13 @@ use stdClass;
  */
 class ProspectsQuery extends Query
 {
-	/**
-	 * Object name
-	 *
-	 * @var string
-	 */
-	protected $object = 'prospect';
+    /**
+     * API <object> identifier
+     * /api/<object>/version/4/do/<operator>/<identifier_field>/<identifier>
+     *
+     * @var string
+     */
+    protected $object = 'prospect';
 
     /**
      * Sends the request to retrieve the user object by email and returns it from the API
@@ -36,6 +37,12 @@ class ProspectsQuery extends Query
      */
 	public function readByEmail(string $email):? stdClass
 	{
-		return $this->setOperator(sprintf('read/email/%s', $email))->request($this->object);
+        $prospect = $this->setOperator(sprintf('read/email/%s', $email))->request($this->object);
+        if(is_array($prospect) && is_object($prospect[0]))
+        {
+            $prospect = $prospect[0];
+        }
+
+		return $prospect;
 	}
 }
