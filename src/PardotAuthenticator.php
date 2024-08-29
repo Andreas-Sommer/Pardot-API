@@ -55,6 +55,7 @@ class PardotAuthenticator implements PardotAuthenticatorInterface
                 'clientSecret' => $this->clientSecret,
                 'redirectUri' => $this->redirectUri
             ]);
+            $provider->setDomain($this->accessToken->getInstanceUrl());
 
             $newAccessToken = $provider->getAccessToken('refresh_token', [
                 'refresh_token' => $this->accessToken->getRefreshToken()
