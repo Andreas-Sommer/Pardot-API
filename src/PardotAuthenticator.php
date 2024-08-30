@@ -80,6 +80,7 @@ class PardotAuthenticator implements PardotAuthenticatorInterface
                 echo $e->getMessage();
                 die;
             }
+            throw $e;
         }
     }
 

@@ -162,6 +162,7 @@ class Query
                     echo $e->getMessage();
                     die;
                 }
+                throw $e;
             }
         }
     }
